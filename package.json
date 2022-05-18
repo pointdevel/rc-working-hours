@@ -1,5 +1,5 @@
 {
-  "name": "@ggenzone/rc-working-hours",
+  "name": "@pointdevel/rc-working-hours",
   "version": "0.0.1",
   "description": "Working hours component",
   "scripts": {
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ggenzone/rc-working-hours.git"
+    "url": "git+https://github.com/pointdevel/rc-working-hours.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ggenzone/rc-working-hours/issues"
+    "url": "https://github.com/pointdevel/rc-working-hours/issues"
   },
-  "homepage": "https://github.com/ggenzone/rc-working-hours#readme",
+  "homepage": "https://github.com/pointdevel/rc-working-hours#readme",
   "devDependencies": {
     "@babel/core": "^7.17.7",
     "@babel/preset-env": "^7.16.11",
@@ -60,7 +60,7 @@
   ],
   "types": "dist/index.d.ts",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/ggenzone"
+    "registry": "https://npm.pkg.github.com/pointdevel"
   },
   "dependencies": {}
 }
