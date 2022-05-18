@@ -1,6 +1,6 @@
 {
   "name": "@pointdevel/rc-working-hours",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Working hours component",
   "scripts": {
     "rollup": "rollup -c",
