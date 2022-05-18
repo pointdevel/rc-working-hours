@@ -76,7 +76,7 @@ class WorkingHours extends React.Component<WorkingHoursProps, WorkingHoursState>
   mouseMove(e) {
     if (!this.state.isSelecting) return;
 
-    this.updateSelect(e.clientX, e.clientY);
+    this.updateSelect(e.pageX, e.pageY);
     e.preventDefault();
   }
 
