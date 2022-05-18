@@ -9,6 +9,7 @@ import { getWorkingHoursSelectedRanges, newTimeCellDefinition, newDaysCopy, Cell
 interface WorkingHoursProps {
   onChange?: (data: UserDayData[]) => void,
   data: UserDayData[],
+  allowReset? : boolean
 }
 
 interface WorkingHoursState {
@@ -272,17 +273,19 @@ class WorkingHours extends React.Component<WorkingHoursProps, WorkingHoursState>
                 updateReference={this.updateReference}
               />
             ))}
-            <tr>
-              <td className="reset-all" colSpan="49">
-                <button
-                  className="btn btn-primary btn-xs working-hours-reset"
-                  onClick={this.resetAll}
-                >
-                  Reset All
-                </button>
-              </td>
-              <td />
-            </tr>
+            {this.props.allowReset && (
+              <tr>
+                <td className="reset-all" colSpan="49">
+                  <button
+                    className="btn btn-primary btn-xs working-hours-reset"
+                    onClick={this.resetAll}
+                  >
+                    Reset All
+                  </button>
+                </td>
+                <td />
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

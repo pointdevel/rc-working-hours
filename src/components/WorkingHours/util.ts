@@ -1,4 +1,3 @@
-import _ from "underscore";
 
 export type RangeType = {
   start: number,
@@ -81,38 +80,28 @@ export function newTimeCellDefinition(d: number, i: number, ranges: UserDataRang
 
 export function getWorkingHoursSelectedRanges(timeCells: CellType[]): RangeType[] {
 
-  //console.log("Input", timeCells);
-  // calculate selected ranges
-  const ranges = _.chain(timeCells)
-    .reduce((r, v, i) => {
-      if (!v.selected) return r;
-      if (
-        r.length === 0 ||
-        i !==
-          _.chain(r)
-            .last()
-            .last()
-            .value().index +
-            1
-      )
-        r.push([{ value: v, index: i }]);
-      else _.last(r).push({ value: v, index: i });
-      return r;
-    }, [])
-    .map(e => ({ start: e[0].index, end: _.last(e).index }))
-    .value();
+  const ranges = [];
+  let start:Number|null = null;
+  let open = false;
+  let last:Number|null = null;
 
+  timeCells.forEach(cell => {
+    if (cell.selected && !open) {
+      open = true;
+      start = cell.index;
+    } else if (!cell.selected && open) {
+      if (start !== null && last !== null) {
+        ranges.push({start: start, end: last});
+      }
+      start = null;
+      open = false;
+    }
+    last = cell.index;
+  });
 
-  // enable range overlap from 24-0
-  if (
-    ranges.length > 0 &&
-    _.last(ranges).end === timeCells.length - 1 &&
-    ranges[0].start === 0
-  ) {
-    _.last(ranges).end = ranges[0].end;
-    ranges.splice(0, 1);
+  if (open && start !== null && last !== null) {
+    ranges.push({start: start, end: last});
   }
-  //console.log("Output", ranges);
 
   return ranges;
 
