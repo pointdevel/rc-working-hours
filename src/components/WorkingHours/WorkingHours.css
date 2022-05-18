@@ -1,0 +1,138 @@
+/* working hours component */
+.working-hours {
+    border-collapse: collapse;
+    width: auto;
+}
+/* headers */
+.hours td {
+    text-align: left;
+    vertical-align: bottom;
+    padding: 0;
+}
+.hours .header {
+    width: 36px;
+    max-width: 36px !important;
+    text-align: center;
+}
+.hours .header span {
+    font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    display: block;
+    overflow: hidden;
+    background: powderblue;
+    color: #667280;
+    border: 1px solid #e0e0e0;
+    background-color: #f3f4f5;
+    transition: background-color .2s;
+    transition-property: background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    font-size: .9em;
+    font-weight: 500;
+    padding: 0.5em 0;
+}
+.hours .part {
+    text-align: center;
+}
+.hours .part span {
+    font-size: 7px;
+    display: block;
+    overflow: hidden;
+}
+/* individual days */
+.day {
+   /* time cells */
+   /* overlay showing selected timespans */
+}
+.day td {
+    height: 30px;
+    padding: 0;
+}
+.day .day-name {
+    font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+    padding: 0px 10px 0px 0px;
+    vertical-align: middle;
+    border: 1px solid #e0e0e0;
+    background: powderblue;
+    text-transform: uppercase;
+
+    background-color: #f3f4f5;
+    background-color: #f3f4f5;
+    transition: background-color .2s;
+    transition-property: background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    font-size: .7em;
+    font-weight: 500;
+    padding: 0.3em 0.7em;
+    color: #667280;
+}
+.day .reset {
+    padding-left: 10px;
+    vertical-align: middle;
+}
+.day .time-cell {
+    border: 1px solid silver;
+    cursor: pointer;
+}
+.day .time-cell.selected {
+    background-color: #007bff;
+}
+.day .time-cell.hour {
+    border-right: 1px solid #e0e0e0;
+    border-right: 1px solid #d8d9da;
+}
+.day .time-cell.half {
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #d8d9da;
+}
+.day .timespan-container {
+    position: relative;
+    width: 0;
+    height: 0;
+    padding: 0;
+}
+.day .timespan-container .timespan-overlay {
+    position: absolute;
+    height: 15px;
+    width: 690px;
+    left: 80px;
+    text-align: center;
+    vertical-align: middle;
+    color: black;
+    pointer-events: none;
+}
+.day .timespan-container .timespan-overlay .timespan {
+    opacity: 1;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 0px 3px;
+    color: white;
+    font-weight: bolder;
+    background-color: #2f70a1;
+}
+/* reset all feature */
+.reset-all {
+    text-align: right;
+    padding-right: 0px;
+    padding-top: 10px;
+}
+.reset-all .working-hours-reset {
+    margin-right: 0px;
+}
+/* admin only styles */
+.working-hours .time-cell.selected {
+    background-color: #5e6469;
+    background-color: #feac3140;
+    background-color: #83b5fe;
+    /*border-color: #83b5fe;*/
+}
+.working-hours .timespan-container .timespan-overlay .timespan {
+    background-color: #6fc1ff;
+    background-color: #2f70a1;
+}
+.working-hours button.working-hours-reset {
+    padding: 3px 5px;
+}
