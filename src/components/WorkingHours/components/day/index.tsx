@@ -28,17 +28,15 @@ function TimeCellElements(props: WorkingHoursDayProps) {
   );
 }
 
-function moviePropsAreEqual(prev: WorkingHoursDayProps, next: WorkingHoursDayProps) {
+function dayPropsAreEqual(prev: WorkingHoursDayProps, next: WorkingHoursDayProps) {
   return prev.name === next.name && JSON.stringify(prev.timeCells) === JSON.stringify(next.timeCells);
 }
 
-const MemoizedTimeCellElements = React.memo(TimeCellElements, moviePropsAreEqual);
+const MemoizedTimeCellElements = React.memo(TimeCellElements, dayPropsAreEqual);
 
-const WorkingHoursDay = (props: WorkingHoursDayProps) => {
-  //console.log("WorkingHoursDay", props.name);
-  const timeCells = props.timeCells;
+function WorkingHoursDay(props: WorkingHoursDayProps) {
 
-  // calculate selected ranges
+  const { timeCells } = props;
   const ranges = getWorkingHoursSelectedRanges(timeCells);
 
   const rangeStr = ranges
@@ -64,8 +62,8 @@ const WorkingHoursDay = (props: WorkingHoursDayProps) => {
       <MemoizedTimeCellElements {...props} />
     </tr>
   );
-};
+}
 
-const MemoizedWorkingHoursDay = React.memo(WorkingHoursDay, moviePropsAreEqual);
+const MemoizedWorkingHoursDay = React.memo(WorkingHoursDay, dayPropsAreEqual);
 
 export default MemoizedWorkingHoursDay;
