@@ -10,8 +10,8 @@ interface TimeCellProps {
 function TimeCell(props: TimeCellProps) {
   const { state, startSelect, updateReference } = props;
 
-  const mouseDown = () => startSelect(state);
-  const updateReference2 = (el: HTMLTableCellElement | null) => updateReference(state.id, el);
+  const onMouseDown = () => startSelect(state);
+  const setReference = (el: HTMLTableCellElement | null) => updateReference(state.id, el);
 
   const [di, tf, s, h] = [
     state.dayIndex,
@@ -22,7 +22,7 @@ function TimeCell(props: TimeCellProps) {
 
   const classNames = `time-cell time-cell-${di}-${tf}${s}${h}`;
 
-  return <td ref={updateReference2} className={classNames} onMouseDown={mouseDown} />;
+  return <td ref={setReference} className={classNames} onMouseDown={onMouseDown} />;
 }
 
 function selectedPropsAreEqual(prev: TimeCellProps, next: TimeCellProps) {
