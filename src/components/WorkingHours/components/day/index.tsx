@@ -1,33 +1,32 @@
 import React from 'react';
 
-import TimeCell from '../time_cell';
+import TimeCell from '../cell';
 
-import { getWorkingHoursSelectedRanges, RangeType, CellType } from '../../util';
+import { getWorkingHoursSelectedRanges, CellType } from '../../util';
 
 interface WorkingHoursDayProps {
   name: string;
   timeCells: CellType[];
   index: number;
-  startSelect: (state: CellType, e: EventTarget) => void;
-  updateReference: any;
+  startSelect: (state: CellType) => void;
+  updateReference: (id: number, el: HTMLTableCellElement | null) => void;
 }
 
-const TimeCellElements = (props: WorkingHoursDayProps) => {
-  //console.log("TimeCellElements", props.name);
-
+function TimeCellElements(props: WorkingHoursDayProps) {
+  const { timeCells, updateReference, startSelect } = props;
   return (
     <>
       {[...Array(48).keys()].map((i) => (
         <TimeCell
-          key={`timeCell-${props.timeCells[i].id}`}
-          updateReference={props.updateReference}
-          state={props.timeCells[i]}
-          startSelect={props.startSelect}
+          key={`timeCell-${timeCells[i].id}`}
+          updateReference={updateReference}
+          state={timeCells[i]}
+          startSelect={startSelect}
         />
       ))}
     </>
   );
-};
+}
 
 function moviePropsAreEqual(prev: WorkingHoursDayProps, next: WorkingHoursDayProps) {
   return prev.name === next.name && JSON.stringify(prev.timeCells) === JSON.stringify(next.timeCells);

@@ -1,7 +1,7 @@
-import React, { MouseEvent } from 'react';
+import React from 'react';
 import './WorkingHours.css';
 
-import WorkingHoursDay from './components/working_hours_day';
+import WorkingHoursDay from './components/day';
 
 import {
   getWorkingHoursSelectedRanges,
@@ -67,22 +67,21 @@ class WorkingHours extends React.Component<WorkingHoursProps, WorkingHoursState>
     document.removeEventListener('mousemove', this.mouseMove, false);
   }
 
-  mouseUp(e) {
+  mouseUp(e: MouseEvent) {
     if (!this.state.isSelecting) return;
 
     this.endSelect();
     e.preventDefault();
   }
 
-  mouseMove(e) {
+  mouseMove(e: MouseEvent) {
     if (!this.state.isSelecting) return;
 
     this.updateSelect(e.pageX, e.pageY);
     e.preventDefault();
   }
 
-  startSelect(cellContent: CellType, el: HTMLTableCellElement) {
-    //console.log("start select", cellContent,el)
+  startSelect(cellContent: CellType) {
 
     const selectionOldCellStates = newDaysCopy(this.state.days);
 
@@ -129,7 +128,7 @@ class WorkingHours extends React.Component<WorkingHoursProps, WorkingHoursState>
 
   // update time cell selection (get state for time cell closest to x-coordinate)
 
-  updateSelect(x, y) {
+  updateSelect(x: number, y: number) {
     //console.log("updateSelect", x,y);
 
     //for (let d = 0; d < this.state.days.length; d += 1) {
@@ -158,9 +157,9 @@ class WorkingHours extends React.Component<WorkingHoursProps, WorkingHoursState>
   }
 
   // update time cell selection (from touch event)
-  updateSelectTouch(e) {
+  /*updateSelectTouch(e) {
     this.updateSelect(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
-  }
+  }*/
 
   // update time cell selection based on start and end elements (state)
   updateSelectInternal(state: CellType) {
@@ -200,7 +199,7 @@ class WorkingHours extends React.Component<WorkingHoursProps, WorkingHoursState>
   }
 
   // reset working hours for every day of the week
-  resetAll(e) {
+  resetAll(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     const newState = {
       days: newDaysCopy(this.state.days),
     };
@@ -215,7 +214,7 @@ class WorkingHours extends React.Component<WorkingHoursProps, WorkingHoursState>
     e.preventDefault();
   }
 
-  updateReference = (day: number, ref: any) => {
+  updateReference = (day: number, ref: HTMLTableCellElement | null) => {
     if (ref && !this.state.references[day]) {
       this.state.references[day] = ref.getBoundingClientRect();
     }
@@ -252,7 +251,7 @@ class WorkingHours extends React.Component<WorkingHoursProps, WorkingHoursState>
             ))}
             {this.props.allowReset && (
               <tr>
-                <td className="reset-all" colSpan="49">
+                <td className="reset-all" colSpan={49}>
                   <button className="btn btn-primary btn-xs working-hours-reset" onClick={this.resetAll}>
                     Reset All
                   </button>

@@ -3,14 +3,15 @@ import { CellType } from '../../util';
 
 interface TimeCellProps {
   state: CellType;
-  startSelect: (state: CellType, e: EventTarget) => void;
-  updateReference: any;
+  startSelect: (state: CellType) => void;
+  updateReference: (id: number, el: HTMLTableCellElement | null) => void;
 }
 
-const TimeCell = (props: TimeCellProps) => {
-  const mouseDown = (e) => props.startSelect(props.state, e.target);
-  const updateReference = (el) => props.updateReference(props.state.id, el);
-  const { state } = props;
+function TimeCell(props: TimeCellProps) {
+  const { state, startSelect, updateReference } = props;
+
+  const mouseDown = () => startSelect(state);
+  const updateReference2 = (el: HTMLTableCellElement | null) => updateReference(state.id, el);
 
   const [di, tf, s, h] = [
     state.dayIndex,
@@ -21,8 +22,8 @@ const TimeCell = (props: TimeCellProps) => {
 
   const classNames = `time-cell time-cell-${di}-${tf}${s}${h}`;
 
-  return <td ref={updateReference} className={classNames} onMouseDown={mouseDown} />;
-};
+  return <td ref={updateReference2} className={classNames} onMouseDown={mouseDown} />;
+}
 
 function selectedPropsAreEqual(prev: TimeCellProps, next: TimeCellProps) {
   return prev.state.selected === next.state.selected && prev.state.id === next.state.id;
