@@ -18,14 +18,28 @@ export const Primary = Template.bind({});
 Primary.args = {
   data: [
     { key: 'mon', name: 'Monday', ranges: [] },
-    { key: 'tue', name: 'Tuesday', ranges: [{from: '05:30', to: '07:30'}, {from: '13:30', to: '15:30'}] },
-    { key: "wed", name: "Wednesday", ranges: []},
-    { key: "thu", name: "Thursday", ranges: [] },
-    { key: "fri", name: "Friday" , ranges: [] },
-    { key: "sat", name: "Saturday" , ranges: []},
-    { key: "sun", name: "Sunday" , ranges: [{from: '05:00', to: '05:30'}, {from: '13:30', to: '14:00'}]}
+    {
+      key: 'tue',
+      name: 'Tuesday',
+      ranges: [
+        { from: '05:30', to: '07:30' },
+        { from: '13:30', to: '15:30' },
+      ],
+    },
+    { key: 'wed', name: 'Wednesday', ranges: [] },
+    { key: 'thu', name: 'Thursday', ranges: [] },
+    { key: 'fri', name: 'Friday', ranges: [] },
+    { key: 'sat', name: 'Saturday', ranges: [] },
+    {
+      key: 'sun',
+      name: 'Sunday',
+      ranges: [
+        { from: '05:00', to: '05:30' },
+        { from: '13:30', to: '14:00' },
+      ],
+    },
   ],
-  onChange: (data) => console.log(data)
+  onChange: (data) => console.log(data),
 };
 
 /*
